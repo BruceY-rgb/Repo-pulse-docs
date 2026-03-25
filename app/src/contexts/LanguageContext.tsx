@@ -16,14 +16,16 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Navigation
     'nav.overview': 'Overview',
+    'nav.projectPlan': 'Project Plan',
     'nav.requirements': 'Requirements Analysis',
     'nav.features': 'Core Features',
     'nav.architecture': 'Architecture',
     'nav.userScenarios': 'User Scenarios',
     'nav.roadmap': 'Roadmap',
     'nav.appendix': 'Appendix',
-    
+
     // Sub-nav
+    'nav.overviewIntro': 'Introduction',
     'nav.userPersonas': 'User Personas',
     'nav.painPoints': 'Pain Points',
     'nav.marketResearch': 'Market Research',
@@ -43,6 +45,10 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.managerMode': 'Manager Mode',
     'nav.glossary': 'Glossary',
     'nav.references': 'References',
+    'nav.techArchitecture': 'Tech Architecture',
+    'nav.backendDesign': 'Backend Design',
+    'nav.implementationPlan': 'Implementation Plan',
+    'nav.devStandards': 'Dev Standards',
     
     // Overview
     'overview.title': 'Repo-Pulse Documentation',
@@ -117,14 +123,16 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Navigation
     'nav.overview': '概览',
+    'nav.projectPlan': '项目计划',
     'nav.requirements': '需求分析',
     'nav.features': '核心功能',
     'nav.architecture': '架构设计',
     'nav.userScenarios': '用户场景',
     'nav.roadmap': '路线图',
     'nav.appendix': '附录',
-    
+
     // Sub-nav
+    'nav.overviewIntro': '项目简介',
     'nav.userPersonas': '用户画像',
     'nav.painPoints': '痛点分析',
     'nav.marketResearch': '市场调研',
@@ -144,6 +152,10 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.managerMode': '管理者模式',
     'nav.glossary': '术语表',
     'nav.references': '参考资料',
+    'nav.techArchitecture': '技术架构',
+    'nav.backendDesign': '后端设计',
+    'nav.implementationPlan': '实施计划',
+    'nav.devStandards': '开发规范',
     
     // Overview
     'overview.title': 'Repo-Pulse 文档',

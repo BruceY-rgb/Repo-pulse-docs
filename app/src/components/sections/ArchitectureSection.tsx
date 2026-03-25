@@ -144,7 +144,7 @@ function SystemDesignContent({ language }: { language: string }) {
             {/* Database & Storage */}
             <div className="flex justify-center gap-4">
               <div className="px-4 py-2 bg-gray-100 border border-gray-300 rounded text-center">
-                <p className="font-semibold text-gray-800">MySQL</p>
+                <p className="font-semibold text-gray-800">PostgreSQL</p>
                 <p className="text-xs text-gray-600">{isZh ? '主数据' : 'Primary Data'}</p>
               </div>
               <div className="px-4 py-2 bg-gray-100 border border-gray-300 rounded text-center">
@@ -252,7 +252,7 @@ function TechStackContent({ language }: { language: string }) {
     {
       layer: isZh ? '数据' : 'Data',
       technologies: [
-        { name: 'MySQL 8.0', purpose: isZh ? '主数据库' : 'Primary Database' },
+        { name: 'PostgreSQL', purpose: isZh ? '主数据库' : 'Primary Database' },
         { name: 'Redis', purpose: isZh ? '缓存与队列' : 'Cache & Queue' },
         { name: 'Elasticsearch', purpose: isZh ? '搜索与分析' : 'Search & Analytics' },
       ],

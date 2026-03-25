@@ -6,6 +6,10 @@ import { ArchitectureSection } from './sections/ArchitectureSection';
 import { UserScenariosSection } from './sections/UserScenariosSection';
 import { RoadmapSection } from './sections/RoadmapSection';
 import { AppendixSection } from './sections/AppendixSection';
+import { TechArchitectureSection } from './sections/TechArchitectureSection';
+import { BackendDesignSection } from './sections/BackendDesignSection';
+import { ImplementationPlanSection } from './sections/ImplementationPlanSection';
+import { DevStandardsSection } from './sections/DevStandardsSection';
 
 interface ContentProps {
   activeSection: string;
@@ -15,12 +19,11 @@ export function Content({ activeSection }: ContentProps) {
   const renderSection = () => {
     switch (activeSection) {
       case 'overview':
-        return <OverviewSection />;
+      case 'overview-intro':
       case 'requirements':
       case 'user-personas':
       case 'pain-points':
       case 'market-research':
-        return <RequirementsSection activeSubsection={activeSection} />;
       case 'features':
       case 'data-listening':
       case 'ai-analysis':
@@ -30,23 +33,28 @@ export function Content({ activeSection }: ContentProps) {
       case 'dashboard':
       case 'reporting':
       case 'comparison':
-        return <FeaturesSection activeSubsection={activeSection} />;
       case 'architecture':
       case 'system-design':
       case 'tech-stack':
       case 'data-flow':
-        return <ArchitectureSection activeSubsection={activeSection} />;
       case 'user-scenarios':
       case 'personal-mode':
       case 'team-mode':
       case 'manager-mode':
-        return <UserScenariosSection activeSubsection={activeSection} />;
       case 'roadmap':
-        return <RoadmapSection />;
       case 'appendix':
       case 'glossary':
       case 'references':
-        return <AppendixSection activeSubsection={activeSection} />;
+        return <OverviewSection />;
+      case 'project-plan':
+      case 'tech-architecture':
+        return <TechArchitectureSection activeSubsection={activeSection} />;
+      case 'backend-design':
+        return <BackendDesignSection activeSubsection={activeSection} />;
+      case 'implementation-plan':
+        return <ImplementationPlanSection activeSubsection={activeSection} />;
+      case 'dev-standards':
+        return <DevStandardsSection activeSubsection={activeSection} />;
       default:
         return <OverviewSection />;
     }

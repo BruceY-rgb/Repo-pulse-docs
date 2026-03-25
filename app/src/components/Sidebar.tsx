@@ -1,13 +1,14 @@
 import { useEffect, useRef } from 'react';
-import { 
-  Home, 
-  Target, 
-  Users, 
-  Layers, 
-  Cpu, 
-  BarChart3, 
-  FileText, 
-  ChevronRight
+import {
+  Home,
+  Target,
+  Users,
+  Layers,
+  Cpu,
+  BarChart3,
+  FileText,
+  ChevronRight,
+  ClipboardList
 } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
@@ -35,22 +36,13 @@ export function Sidebar({ isOpen, activeSection, onSectionChange }: SidebarProps
       id: 'overview',
       label: t('nav.overview') as string,
       icon: Home,
-    },
-    {
-      id: 'requirements',
-      label: t('nav.requirements') as string,
-      icon: Target,
       children: [
+        { id: 'overview-intro', label: t('nav.overviewIntro') as string },
+        { id: 'requirements', label: t('nav.requirements') as string },
         { id: 'user-personas', label: t('nav.userPersonas') as string },
         { id: 'pain-points', label: t('nav.painPoints') as string },
         { id: 'market-research', label: t('nav.marketResearch') as string },
-      ],
-    },
-    {
-      id: 'features',
-      label: t('nav.features') as string,
-      icon: Layers,
-      children: [
+        { id: 'features', label: t('nav.features') as string },
         { id: 'data-listening', label: t('nav.dataListening') as string },
         { id: 'ai-analysis', label: t('nav.aiAnalysis') as string },
         { id: 'filtering', label: t('nav.filtering') as string },
@@ -59,40 +51,29 @@ export function Sidebar({ isOpen, activeSection, onSectionChange }: SidebarProps
         { id: 'dashboard', label: t('nav.dashboard') as string },
         { id: 'reporting', label: t('nav.reporting') as string },
         { id: 'comparison', label: t('nav.comparison') as string },
-      ],
-    },
-    {
-      id: 'architecture',
-      label: t('nav.architecture') as string,
-      icon: Cpu,
-      children: [
+        { id: 'architecture', label: t('nav.architecture') as string },
         { id: 'system-design', label: t('nav.systemDesign') as string },
         { id: 'tech-stack', label: t('nav.techStack') as string },
         { id: 'data-flow', label: t('nav.dataFlow') as string },
-      ],
-    },
-    {
-      id: 'user-scenarios',
-      label: t('nav.userScenarios') as string,
-      icon: Users,
-      children: [
+        { id: 'user-scenarios', label: t('nav.userScenarios') as string },
         { id: 'personal-mode', label: t('nav.personalMode') as string },
         { id: 'team-mode', label: t('nav.teamMode') as string },
         { id: 'manager-mode', label: t('nav.managerMode') as string },
+        { id: 'roadmap', label: t('nav.roadmap') as string },
+        { id: 'appendix', label: t('nav.appendix') as string },
+        { id: 'glossary', label: t('nav.glossary') as string },
+        { id: 'references', label: t('nav.references') as string },
       ],
     },
     {
-      id: 'roadmap',
-      label: t('nav.roadmap') as string,
-      icon: BarChart3,
-    },
-    {
-      id: 'appendix',
-      label: t('nav.appendix') as string,
-      icon: FileText,
+      id: 'project-plan',
+      label: t('nav.projectPlan') as string,
+      icon: ClipboardList,
       children: [
-        { id: 'glossary', label: t('nav.glossary') as string },
-        { id: 'references', label: t('nav.references') as string },
+        { id: 'tech-architecture', label: t('nav.techArchitecture') as string },
+        { id: 'backend-design', label: t('nav.backendDesign') as string },
+        { id: 'implementation-plan', label: t('nav.implementationPlan') as string },
+        { id: 'dev-standards', label: t('nav.devStandards') as string },
       ],
     },
   ];
