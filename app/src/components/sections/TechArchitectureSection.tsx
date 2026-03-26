@@ -3,12 +3,8 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-interface TechArchitectureSectionProps {
-  activeSubsection: string;
-}
-
-export function TechArchitectureSection({ activeSubsection }: TechArchitectureSectionProps) {
-  const { language, t } = useLanguage();
+export function TechArchitectureSection() {
+  const { language } = useLanguage();
   const isZh = language === 'zh';
 
   return (

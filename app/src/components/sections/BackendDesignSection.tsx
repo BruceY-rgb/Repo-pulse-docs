@@ -3,12 +3,8 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-interface BackendDesignSectionProps {
-  activeSubsection: string;
-}
-
-export function BackendDesignSection({ activeSubsection }: BackendDesignSectionProps) {
-  const { language, t } = useLanguage();
+export function BackendDesignSection() {
+  const { language } = useLanguage();
   const isZh = language === 'zh';
 
   return (

@@ -1,14 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-interface DevStandardsSectionProps {
-  activeSubsection: string;
-}
-
-export function DevStandardsSection({ activeSubsection }: DevStandardsSectionProps) {
-  const { language, t } = useLanguage();
+export function DevStandardsSection() {
+  const { language } = useLanguage();
   const isZh = language === 'zh';
 
   return (

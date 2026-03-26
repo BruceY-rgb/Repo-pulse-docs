@@ -1,12 +1,6 @@
 import { useEffect, useRef } from 'react';
 import {
   Home,
-  Target,
-  Users,
-  Layers,
-  Cpu,
-  BarChart3,
-  FileText,
   ChevronRight,
   ClipboardList
 } from 'lucide-react';

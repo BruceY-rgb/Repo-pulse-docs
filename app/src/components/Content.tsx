@@ -1,11 +1,5 @@
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { OverviewSection } from './sections/OverviewSection';
-import { RequirementsSection } from './sections/RequirementsSection';
-import { FeaturesSection } from './sections/FeaturesSection';
-import { ArchitectureSection } from './sections/ArchitectureSection';
-import { UserScenariosSection } from './sections/UserScenariosSection';
-import { RoadmapSection } from './sections/RoadmapSection';
-import { AppendixSection } from './sections/AppendixSection';
 import { TechArchitectureSection } from './sections/TechArchitectureSection';
 import { BackendDesignSection } from './sections/BackendDesignSection';
 import { ImplementationPlanSection } from './sections/ImplementationPlanSection';
@@ -48,13 +42,13 @@ export function Content({ activeSection }: ContentProps) {
         return <OverviewSection />;
       case 'project-plan':
       case 'tech-architecture':
-        return <TechArchitectureSection activeSubsection={activeSection} />;
+        return <TechArchitectureSection />;
       case 'backend-design':
-        return <BackendDesignSection activeSubsection={activeSection} />;
+        return <BackendDesignSection />;
       case 'implementation-plan':
-        return <ImplementationPlanSection activeSubsection={activeSection} />;
+        return <ImplementationPlanSection />;
       case 'dev-standards':
-        return <DevStandardsSection activeSubsection={activeSection} />;
+        return <DevStandardsSection />;
       default:
         return <OverviewSection />;
     }
