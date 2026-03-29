@@ -1,11 +1,11 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { 
-  Zap, 
-  Brain, 
-  Shield, 
-  BarChart3, 
-  Bell, 
+import {
+  Zap,
+  Brain,
+  Shield,
+  BarChart3,
+  Bell,
   GitCompare,
   FileText,
   Radio,
@@ -14,7 +14,11 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export function OverviewSection() {
+interface OverviewSectionProps {
+  activeSubsection?: string;
+}
+
+export function OverviewSection({ activeSubsection = 'overview' }: OverviewSectionProps) {
   const { t } = useLanguage();
 
   const features = [
