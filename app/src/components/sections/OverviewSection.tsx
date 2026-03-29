@@ -14,11 +14,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-interface OverviewSectionProps {
-  activeSubsection?: string;
-}
-
-export function OverviewSection({ activeSubsection = 'overview' }: OverviewSectionProps) {
+export function OverviewSection() {
   const { t } = useLanguage();
 
   const features = [

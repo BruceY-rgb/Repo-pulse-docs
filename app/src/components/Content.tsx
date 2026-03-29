@@ -21,7 +21,7 @@ export function Content({ activeSection }: ContentProps) {
       case 'overview':
         return <OverviewSection />;
       case 'overview-intro':
-        return <OverviewSection activeSubsection="intro" />;
+        return <OverviewSection />;
       case 'requirements':
         return <RequirementsSection activeSubsection="overview" />;
       case 'user-personas':
