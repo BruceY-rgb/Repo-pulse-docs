@@ -13,11 +13,13 @@ export function DevStandardsSection() {
         <h1 className="text-3xl font-bold">{isZh ? '开发规范' : 'Development Standards'}</h1>
         <p className="text-muted-foreground text-lg">
           {isZh
-            ? '前端样式约束、后端开发规范、数据库规范与代码规范，确保团队协作一致性'
-            : 'Frontend style constraints, backend standards, database specs and code conventions for team consistency'}
+            ? 'GitFlow 工作流、CSS 变量规范、后端开发规范与代码规范，确保团队协作一致性'
+            : 'GitFlow workflow, frontend style constraints, backend standards and code conventions for team consistency'}
         </p>
       </div>
 
+      <GitFlowContent isZh={isZh} />
+      <Separator />
       <FrontendStandardsContent isZh={isZh} />
       <Separator />
       <BackendStandardsContent isZh={isZh} />
@@ -352,6 +354,250 @@ pnpm test         # 运行测试`}
               </pre>
             </div>
           </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+function GitFlowContent({ isZh }: { isZh: boolean }) {
+  const branchTypes = [
+    { name: 'Master', desc: isZh ? '生产分支，稳定版本，只接受合并，禁止直接提交' : 'Production branch, stable version, merge only, no direct commits', color: 'bg-green-500' },
+    { name: 'Develop', desc: isZh ? '开发主分支，集成所有功能，禁止直接提交' : 'Development branch, integrates all features, no direct commits', color: 'bg-blue-500' },
+    { name: 'Feature', desc: isZh ? '功能分支，从 Develop 派生，开发完成后合并回 Develop' : 'Feature branches, branched from Develop, merge back when done', color: 'bg-purple-500' },
+    { name: 'Release', desc: isZh ? '预发布分支，从 Develop 派生，只做 Bug 修复和发布准备' : 'Release branches, branched from Develop, Bug fixes and release prep only', color: 'bg-yellow-500' },
+    { name: 'Hotfix', desc: isZh ? '热修复分支，从 Master 派生，用于紧急修复生产问题' : 'Hotfix branches, branched from Master, for critical production fixes', color: 'bg-red-500' },
+  ];
+
+  const commitTypes = [
+    { type: 'feat', desc: isZh ? '新功能' : 'New feature' },
+    { type: 'fix', desc: isZh ? 'Bug 修复' : 'Bug fix' },
+    { type: 'docs', desc: isZh ? '文档更新' : 'Documentation' },
+    { type: 'style', desc: isZh ? '代码格式（不影响功能）' : 'Code formatting (no logic change)' },
+    { type: 'refactor', desc: isZh ? '重构（不修复也不添加功能）' : 'Refactoring (no feature or fix)' },
+    { type: 'perf', desc: isZh ? '性能优化' : 'Performance improvement' },
+    { type: 'test', desc: isZh ? '测试相关' : 'Testing' },
+    { type: 'chore', desc: isZh ? '构建/工具/依赖更新' : 'Build/tool/dependency updates' },
+  ];
+
+  const prohibitions = [
+    isZh ? '禁止直接提交到 master 或 develop' : 'No direct commits to master or develop',
+    isZh ? '禁止提交敏感信息（.env、密钥、密码）' : 'No sensitive info (.env, keys, passwords)',
+    isZh ? '禁止提交构建产物（node_modules、dist）' : 'No build artifacts (node_modules, dist)',
+    isZh ? '禁止强制推送 main 或 develop 分支' : 'No force push to main or develop',
+    isZh ? '禁止在 Release 分支添加新功能' : 'No new features in Release branches',
+  ];
+
+  return (
+    <div className="space-y-4">
+      <div>
+        <h2 className="text-2xl font-semibold">{isZh ? 'GitFlow 开发规范' : 'GitFlow Workflow Standards'}</h2>
+        <p className="text-muted-foreground mt-1">
+          {isZh
+            ? '分支管理策略、命名规范、开发流程与合并要求'
+            : 'Branch management strategy, naming conventions, development workflow and merge requirements'}
+        </p>
+      </div>
+
+      {/* 分支类型说明 */}
+      <div>
+        <h3 className="text-lg font-medium mb-3">{isZh ? '分支类型' : 'Branch Types'}</h3>
+        <div className="space-y-3">
+          {branchTypes.map((branch) => (
+            <div key={branch.name} className="flex items-center gap-3 p-3 rounded-lg border bg-card">
+              <div className={`w-3 h-3 rounded-full ${branch.color}`} />
+              <div className="flex-1">
+                <span className="font-medium">{branch.name}</span>
+                <span className="text-muted-foreground text-sm ml-2">— {branch.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 分支命名规范 */}
+      <Card>
+        <CardHeader>
+          <CardTitle>{isZh ? '分支命名规范' : 'Branch Naming Conventions'}</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex items-center gap-3">
+            <Badge variant="secondary">feature/</Badge>
+            <span className="text-sm">{isZh ? '功能分支：' : 'Feature: '}<code className="text-xs bg-muted px-1 py-0.5 rounded">feature/user-authentication</code></span>
+          </div>
+          <div className="flex items-center gap-3">
+            <Badge variant="secondary">release/</Badge>
+            <span className="text-sm">{isZh ? '发布分支：' : 'Release: '}<code className="text-xs bg-muted px-1 py-0.5 rounded">release/v1.0.0</code></span>
+          </div>
+          <div className="flex items-center gap-3">
+            <Badge variant="secondary">hotfix/</Badge>
+            <span className="text-sm">{isZh ? '热修复分支：' : 'Hotfix: '}<code className="text-xs bg-muted px-1 py-0.5 rounded">hotfix/v1.0.1</code></span>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* 提交信息规范 */}
+      <Card>
+        <CardHeader>
+          <CardTitle>{isZh ? '提交信息规范（Conventional Commits）' : 'Commit Message Convention'}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <pre className="bg-muted p-3 rounded-lg text-sm font-mono mb-4">
+{`# 格式
+<type>: <subject>
+
+# 示例
+feat: 添加用户登录功能
+
+# 或带详细说明
+fix: 修复侧边栏点击无法切换页面的问题
+
+- 问题原因：Content.tsx 中 switch 语句映射错误
+- 解决方案：改为正确的组件映射`}
+          </pre>
+          <div className="grid gap-2 md:grid-cols-4">
+            {commitTypes.map((item) => (
+              <div key={item.type} className="flex items-center gap-2 p-2 rounded bg-secondary/50">
+                <Badge variant="outline" className="font-mono text-xs">{item.type}</Badge>
+                <span className="text-xs text-muted-foreground">{item.desc}</span>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* 开发流程 */}
+      <Card>
+        <CardHeader>
+          <CardTitle>{isZh ? '日常开发流程' : 'Daily Development Workflow'}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div>
+              <h4 className="font-medium text-sm mb-2">{isZh ? '1. 创建功能分支' : '1. Create Feature Branch'}</h4>
+              <pre className="bg-muted p-3 rounded-lg text-xs font-mono">
+{`# 确保 develop 是最新的
+git checkout develop
+git pull origin develop
+
+# 从 develop 创建功能分支
+git checkout -b feature/your-feature-name develop
+
+# 推送到远程（如果需要协作）
+git push -u origin feature/your-feature-name`}
+              </pre>
+            </div>
+
+            <div>
+              <h4 className="font-medium text-sm mb-2">{isZh ? '2. 开发与提交' : '2. Develop and Commit'}</h4>
+              <pre className="bg-muted p-3 rounded-lg text-xs font-mono">
+{`# 编写代码...
+
+# 查看修改状态
+git status
+
+# 添加文件（不要提交 node_modules、dist 等）
+git add src/components/Button.tsx
+
+# 提交代码
+git commit -m "feat: 添加按钮组件"`}
+              </pre>
+            </div>
+
+            <div>
+              <h4 className="font-medium text-sm mb-2">{isZh ? '3. 完成功能后合并到 Develop' : '3. Merge Back to Develop'}</h4>
+              <pre className="bg-muted p-3 rounded-lg text-xs font-mono">
+{`# 切换到 develop
+git checkout develop
+
+# 合并功能分支（--no-ff 保留分支历史）
+git merge --no-ff feature/your-feature-name
+
+# 推送
+git push origin develop
+
+# 删除功能分支
+git branch -d feature/your-feature-name`}
+              </pre>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* 合并规范 */}
+      <Card>
+        <CardHeader>
+          <CardTitle>{isZh ? '合并规范' : 'Merge Conventions'}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            <div className="flex items-start gap-3 p-3 rounded-lg bg-green-500/10 border border-green-500/20">
+              <Badge variant="default" className="bg-green-500 mt-0.5">✓</Badge>
+              <div>
+                <p className="font-medium text-sm">{isZh ? '必须使用 --no-ff 参数' : 'Must use --no-ff parameter'}</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {isZh ? '保留分支历史，便于追踪功能开发轨迹' : 'Preserves branch history for better traceability'}
+                </p>
+                <code className="text-xs bg-muted px-2 py-1 rounded mt-2 inline-block">git merge --no-ff feature/xxx</code>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3 p-3 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
+              <Badge variant="default" className="bg-yellow-500 mt-0.5">!</Badge>
+              <div>
+                <p className="font-medium text-sm">{isZh ? 'Hotfix 需要同时合并到两个分支' : 'Hotfix must merge to both branches'}</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {isZh ? '合并到 master + 打标签，同时合并回 develop' : 'Merge to master + tag, also merge back to develop'}
+                </p>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* 禁止事项 */}
+      <Card className="border-red-500/20">
+        <CardHeader>
+          <CardTitle className="text-red-600 dark:text-red-400">{isZh ? '禁止事项' : 'Prohibitions'}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-2 md:grid-cols-1">
+            {prohibitions.map((item, i) => (
+              <div key={i} className="flex items-center gap-2 text-sm">
+                <Badge variant="destructive" className="shrink-0">×</Badge>
+                {item}
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* 常用命令速查 */}
+      <Card>
+        <CardHeader>
+          <CardTitle>{isZh ? '常用命令速查' : 'Quick Command Reference'}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <pre className="bg-muted p-3 rounded-lg text-xs font-mono">
+{`# 分支操作
+git branch -a                      # 查看所有分支
+git checkout -b feature/xxx develop  # 创建并切换
+git branch -d xxx                   # 删除本地分支
+git push origin --delete xxx        # 删除远程分支
+
+# 同步更新
+git fetch origin                     # 获取远程更新
+git pull origin develop              # 拉取并合并
+git rebase origin/develop           # 变基（保持历史整洁）
+
+# 合并操作
+git merge --no-ff xxx               # 合并并保留分支历史
+
+# 标签操作
+git tag -a v1.0.0 -m "message"      # 创建标签
+git push origin v1.0.0              # 推送标签
+git push origin --tags              # 推送所有标签`}
+          </pre>
         </CardContent>
       </Card>
     </div>
